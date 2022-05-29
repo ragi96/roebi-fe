@@ -29,7 +29,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm openapi`
+### `npm run openapi`
 
 Codegen for swagger.json (will later be changed to URL so we can fetch from LIVE Api Server)
 
