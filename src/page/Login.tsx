@@ -9,13 +9,13 @@ export default function Login() {
     let navigate = useNavigate();
     useEffect(() => {
         const fetchUser = async () => {
-            const user = await currentUser();
-            if(user.firstName !== null){
-                navigate("/dashboard");
+            let user = await currentUser();
+            if (!(user instanceof Error)) {
+                navigate('/dashboard');
             }
         }
         fetchUser();
-    })
+    }, [])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -24,19 +24,19 @@ export default function Login() {
             password: data.get('username')?.toString() ?? "",
             username: data.get('password')?.toString() ?? ""
         }
-        authenticate(request);
-        if(localStorage.getItem('token') !== ""){
-            navigate("/dashboard");
-        }
-      };
+        authenticate(request).finally(() => {
+            console.log('dashboard?')
+            navigate('/dashboard')
+        });
+    };
     return (
         <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
+            sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
             <Box>
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
@@ -70,11 +70,11 @@ export default function Login() {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
-                        >
+                    >
                         Sign In
                     </Button>
                 </Box>
             </Box>
         </Box>
     );
-  }
+}
