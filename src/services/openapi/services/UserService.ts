@@ -31,6 +31,17 @@ requestBody?: AuthenticateRequest,
      * @returns User Success
      * @throws ApiError
      */
+    public static getUserCurrent(): CancelablePromise<User> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/User/current',
+        });
+    }
+
+    /**
+     * @returns User Success
+     * @throws ApiError
+     */
     public static getUser(): CancelablePromise<Array<User>> {
         return __request(OpenAPI, {
             method: 'GET',
