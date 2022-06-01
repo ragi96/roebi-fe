@@ -1,33 +1,23 @@
-import React, { useEffect } from 'react';
-import { authenticate, currentUser } from '../services/api/auth';
+import React, { useState } from 'react';
 import { AuthenticateRequest } from '../services/openapi';
 import { TextField, Button, Box, Avatar, Typography } from "@mui/material/";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from '../app/hooks';
+import { loginUser } from '../redux/actions/userActions';
 
 export default function Login() {
-    let navigate = useNavigate();
-    useEffect(() => {
-        const fetchUser = async () => {
-            let user = await currentUser();
-            if (!(user instanceof Error)) {
-                navigate('/dashboard');
-            }
-        }
-        fetchUser();
-    }, [])
+    const dispatch = useAppDispatch();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
         let request: AuthenticateRequest = {
-            password: data.get('username')?.toString() ?? "",
-            username: data.get('password')?.toString() ?? ""
+            password: password,
+            username: username
         }
-        authenticate(request).finally(() => {
-            console.log('dashboard?')
-            navigate('/dashboard')
-        });
+        await dispatch(loginUser(request));
     };
     return (
         <Box
@@ -50,12 +40,14 @@ export default function Login() {
                         required
                         fullWidth
                         id="username"
-                        label="Email Address"
+                        onChange={(e) => setUsername(e.target.value)}
+                        label="Username"
                         name="username"
                         autoComplete="username"
                         autoFocus
                     />
                     <TextField
+                        onChange={(e) => setPassword(e.target.value)}
                         margin="normal"
                         required
                         fullWidth
@@ -76,5 +68,6 @@ export default function Login() {
                 </Box>
             </Box>
         </Box>
+
     );
 }

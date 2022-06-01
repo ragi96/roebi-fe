@@ -1030,8 +1030,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "role": {
-            "$ref": "#/components/schemas/Role"
+          "user": {
+            "$ref": "#/components/schemas/User"
           },
           "token": {
             "type": "string",
@@ -1276,10 +1276,6 @@
           },
           "role": {
             "$ref": "#/components/schemas/Role"
-          },
-          "passwordHash": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

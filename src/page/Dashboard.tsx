@@ -1,24 +1,19 @@
-import React, { useEffect } from "react";
-import { currentUser } from "../services/api/auth";
 import { Box } from "@mui/material/";
 import NavBar from "../components/NavBar";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { User } from "../services/openapi";
 
 export default function Dashboard() {
-    let navigate = useNavigate();
-    useEffect(() => {
-        const fetchUser = async () => {
-            let user = await currentUser();
-            console.log(user);
-            if (user instanceof Error) {
-                navigate("/login");
-            }
-        };
-        fetchUser();
-    }, []);
+
+    let user = useSelector(state => state);
+
+    console.log(user);
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "block" }}>
             <NavBar />
+            <Box>
+                <h1>Dashboard</h1>
+            </Box>
         </Box>
     );
 }

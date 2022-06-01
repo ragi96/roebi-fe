@@ -10,5 +10,4 @@ export type User = {
     lastName?: string | null;
     username: string;
     role?: Role;
-    passwordHash?: string | null;
 };

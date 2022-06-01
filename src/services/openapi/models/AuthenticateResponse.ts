@@ -2,10 +2,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Role } from './Role';
+import type { User } from './User';
 
 export type AuthenticateResponse = {
     id?: number;
-    role?: Role;
+    user?: User;
     token?: string | null;
 };
