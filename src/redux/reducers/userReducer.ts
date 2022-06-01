@@ -1,36 +1,44 @@
-import {
-  SET_USER,
-  SET_AUTHENTICATED,
-  SET_UNAUTHENTICATED,
-  LOADING_USER,
+import { Reducer } from "redux";
+import UserState, {
+  UserActionTypes,
+  UserStateActions,
 } from "../actiontypes/index";
 
-const initialState = {
+const initialState: UserState = {
   authenticated: false,
   loading: false,
+  currentUser: null,
 };
 
-export default function (state = initialState, action: any) {
+const UserReducer: Reducer<UserState, UserStateActions> = (
+  state = initialState,
+  action: UserStateActions
+) => {
+  console.log(action);
   switch (action.type) {
-    case SET_AUTHENTICATED:
+    case UserActionTypes.SET_AUTHENTICATED:
       return {
-        ...state,
+        loading: state.loading,
         authenticated: true,
+        currentUser: state.currentUser,
       };
-    case SET_UNAUTHENTICATED:
+    case UserActionTypes.SET_UNAUTHENTICATED:
       return initialState;
-    case SET_USER:
+    case UserActionTypes.SET_USER:
       return {
-        authenticated: true,
-        loading: false,
-        ...action.payload,
+        authenticated: state.authenticated,
+        loading: state.loading,
+        currentUser: action.current,
       };
-    case LOADING_USER:
+    case UserActionTypes.LOADING_USER:
       return {
-        ...state,
+        authenticated: state.authenticated,
         loading: true,
+        currentUser: state.currentUser,
       };
     default:
       return state;
   }
-}
+};
+
+export default UserReducer;

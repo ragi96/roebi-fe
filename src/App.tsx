@@ -13,8 +13,6 @@ function App() {
   useEffect(() => {
     CheckAuthentication();
   }, []);
-
-  console.log('load');
   return (
     <React.StrictMode>
       <Provider store={store}>

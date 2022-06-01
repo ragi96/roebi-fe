@@ -3,7 +3,7 @@ import {
   AuthenticateRequest,
   UserService,
 } from "../../services/openapi";
-import { SET_USER, SET_UNAUTHENTICATED, LOADING_USER } from "../actiontypes/index";
+import {UserActionTypes} from "../actiontypes/index";
 
 const { postUserAuthenticate, getUserCurrent } = UserService;
 
@@ -14,10 +14,8 @@ export const loginUser = (request: AuthenticateRequest) => {
   return async (dispatch: any) => {
     try {
       let response = await postUserAuthenticate(request);
-      console.log(response);
       OpenAPI.TOKEN = response.token ?? '';
       localStorage.setItem("bearer", response.token ?? '');
-      console.log('success');
       if (response.user != null) {
         dispatch(getUserData());
       }
@@ -30,12 +28,12 @@ export const loginUser = (request: AuthenticateRequest) => {
 
 export const getUserData = () => {
   return async (dispatch: any) => {
-    dispatch({ type: LOADING_USER });
+    dispatch({ type: UserActionTypes.LOADING_USER });
     try {
       let user = await getUserCurrent();
       if (user != null) {
         dispatch({
-          type: SET_USER,
+          type: UserActionTypes.SET_USER,
           payload: user
          })
       }
@@ -47,8 +45,9 @@ export const getUserData = () => {
 
 export const logoutUser = () => (dispatch: any) => {
   dispatch({
-    type: SET_UNAUTHENTICATED,
+    type: UserActionTypes.SET_UNAUTHENTICATED,
   });
   console.log('logout');
+  localStorage.setItem('bearer', '');
   window.location.href = '/'
 };

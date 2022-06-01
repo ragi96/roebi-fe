@@ -14,11 +14,14 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { logoutUser } from "../redux/actions/userActions";
 
 
 const pages = ["Patienten", "Rooms", "Medikamenten"];
 
 export default function NavBar() {
+  let dispatch = useAppDispatch();
   let navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -39,6 +42,7 @@ export default function NavBar() {
   };
 
   function handleLogout() {
+    dispatch(logoutUser())
     navigate('/login');
   }
 
