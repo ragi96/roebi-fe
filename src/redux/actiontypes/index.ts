@@ -27,7 +27,7 @@ export interface userStateLoading {
 
 export interface userStateSet {
   type: UserActionTypes.SET_USER;
-  current: User;
+  payload: User;
 }
 
 export type UserStateActions =

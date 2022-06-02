@@ -14,7 +14,6 @@ const UserReducer: Reducer<UserState, UserStateActions> = (
   state = initialState,
   action: UserStateActions
 ) => {
-  console.log(action);
   switch (action.type) {
     case UserActionTypes.SET_AUTHENTICATED:
       return {
@@ -26,9 +25,9 @@ const UserReducer: Reducer<UserState, UserStateActions> = (
       return initialState;
     case UserActionTypes.SET_USER:
       return {
-        authenticated: state.authenticated,
+        authenticated: true,
         loading: state.loading,
-        currentUser: action.current,
+        currentUser: action.payload,
       };
     case UserActionTypes.LOADING_USER:
       return {
