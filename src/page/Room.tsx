@@ -1,11 +1,10 @@
 import { Box } from "@mui/material/";
 
-export default function Dashboard() {
+export default function Room() {
     return (
         <Box sx={{ display: "block" }}>
             <Box>
-                <h1>Dashboard</h1>
-                Room
+                <h1>Rooms</h1>
             </Box>
         </Box>
     );
