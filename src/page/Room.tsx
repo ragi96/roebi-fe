@@ -50,7 +50,7 @@ export default function Room() {
     return (
         <Box>
             <h1>Rooms</h1>
-            <div style={{ display: 'flex', height: 'fit-content', minHeight: '375px' }}>
+            <div style={{ display: 'flex', height: 'fit-content', minHeight: '371px' }}>
                 {rooms !== null
                     ?
                     <Box style={{ flexGrow: 1 }}>
