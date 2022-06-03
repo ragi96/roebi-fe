@@ -10,6 +10,8 @@ import { RootState } from '../../app/store';
 import { updateMedication, loadMedications } from '../../redux/actions/medicationActions';
 import { UpdateMedicationDto } from '../../services/openapi';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { allPatients } from '../../redux/actions/patientActions';
+import { allMedicines } from '../../redux/actions/medicineActions';
 
 export default function MedicationSingle() {
     const dispatch = useAppDispatch();
@@ -21,6 +23,18 @@ export default function MedicationSingle() {
     const patients = useAppSelector((state: RootState) => state.reducers.patient.patients);
     const medicines = useAppSelector((state: RootState) => state.reducers.medicine.medicines);
     let disabled = true;
+
+    useEffect(() => {
+        if (patients === null) {
+            dispatch(allPatients())
+        }
+    }, [patients, dispatch])
+
+    useEffect(() => {
+        if (medicines === null) {
+            dispatch(allMedicines())
+        }
+    }, [medicines, dispatch])
 
     useEffect(() => {
         if (medication === null) {

@@ -22,8 +22,6 @@ export default function NewMedication() {
     const patients = useAppSelector((state: RootState) => state.reducers.patient.patients);
     const medicines = useAppSelector((state: RootState) => state.reducers.medicine.medicines);
 
-
-
     useEffect(() => {
         if (patients === null) {
             dispatch(allPatients())
