@@ -1,9 +1,9 @@
-import { Room } from '../services/openapi';
+import { Room } from '../../services/openapi';
 import { Box, CircularProgress, TextField, Button, Divider, Typography } from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { createRoom, loadRooms } from '../redux/actions/roomActions';
-import { RootState } from '../app/store';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { createRoom, loadRooms } from '../../redux/actions/roomActions';
+import { RootState } from '../../app/store';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Box, Button, CircularProgress } from "@mui/material/";
-import { useAppDispatch } from '../app/hooks';
-import { useAppSelector } from '../app/hooks';
-import { allRooms, newRoom } from '../redux/actions/roomActions';
-import { RootState } from '../app/store';
+import { useAppDispatch } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
+import { allRooms, newRoom } from '../../redux/actions/roomActions';
+import { RootState } from '../../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { getRoomById } from '../redux/actions/roomActions';
+import { getRoomById } from '../../redux/actions/roomActions';
 import { useNavigate } from 'react-router-dom';
 
 const columns: GridColDef[] = [
