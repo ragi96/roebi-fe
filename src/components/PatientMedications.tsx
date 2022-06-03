@@ -6,13 +6,22 @@ import { getMedicationByUser } from '../redux/actions/medicationActions';
 import { RootState } from '../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
+const getMedicine = (params: any) => params.value.name;
+const getTakingStamp = (params: any) => new Date(params.value * 1000).toLocaleString();
+
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-        field: 'firstname',
-        headerName: 'Vorname',
-        width: 200,
-        editable: true,
+        field: 'medicine',
+        headerName: 'Medikament',
+        width: 150,
+        valueGetter: getMedicine,
+    },
+    {
+        field: 'takingStamp',
+        headerName: 'Geplanter Einahme Zeitpunkt',
+        flex: 1,
+        valueGetter: getTakingStamp
     }
 ];
 
