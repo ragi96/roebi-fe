@@ -60,7 +60,6 @@ export default function MedicineSingle() {
                             required
                             fullWidth
                             id="id"
-                            onChange={(e) => setName(e.target.value)}
                             label="Id"
                             name="id"
                             autoFocus

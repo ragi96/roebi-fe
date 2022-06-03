@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
-import userReducer from "./userReducer";
-import roomReducer from "./roomReducer";
+import UserReducer from "./userReducer";
+import RoomReducer from "./roomReducer";
 import MedicineReducer from "./medicineReducer";
+import PatientReducer from "./patientReducer";
 
 const reducers = combineReducers({
-  user: userReducer,
-  room: roomReducer,
+  user: UserReducer,
+  room: RoomReducer,
   medicine: MedicineReducer,
+  patient: PatientReducer,
 });
 
 export default reducers;

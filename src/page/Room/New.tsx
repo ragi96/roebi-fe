@@ -56,7 +56,6 @@ export default function NewRoom() {
                             required
                             fullWidth
                             id="id"
-                            onChange={(e) => setName(e.target.value)}
                             label="Id"
                             name="id"
                             autoFocus
