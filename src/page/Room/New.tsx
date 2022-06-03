@@ -52,17 +52,6 @@ export default function NewRoom() {
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, maxWidth: "500px", paddingTop: "1rem" }}>
                         <TextField
                             margin="normal"
-                            defaultValue={room.id.toString()}
-                            required
-                            fullWidth
-                            id="id"
-                            label="Id"
-                            name="id"
-                            autoFocus
-                            disabled
-                        />
-                        <TextField
-                            margin="normal"
                             defaultValue={room.name}
                             required
                             fullWidth

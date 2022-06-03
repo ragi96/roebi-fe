@@ -126,7 +126,7 @@ export default function NewMedication() {
                                 autoFocus
                                 ampm={false}
                                 disablePast
-                                inputFormat="dd.mm.yyyy HH:mm"
+                                inputFormat="dd.MM.yyyy HH:mm"
                                 onChange={(newValue) => { setTakingStamp(newValue); }}
                             />
                         </LocalizationProvider>
