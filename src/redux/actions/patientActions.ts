@@ -1,4 +1,9 @@
-import { OpenAPI, Patient, PatientService } from "../../services/openapi";
+import {
+  OpenAPI,
+  AddPatientDto,
+  UpdatePatientDto,
+  PatientService,
+} from "../../services/openapi";
 import { PatientActionTypes } from "../actiontypes/patient";
 
 const { getPatient, getPatient1, postPatient, putPatient } = PatientService;
@@ -59,7 +64,7 @@ export const loadPatients = () => {
   };
 };
 
-export const createPatient = (patient: Patient) => {
+export const createPatient = (patient: AddPatientDto) => {
   return async (dispatch: any) => {
     try {
       await postPatient(patient);
@@ -73,7 +78,7 @@ export const createPatient = (patient: Patient) => {
   };
 };
 
-export const updatePatient = (patient: Patient) => {
+export const updatePatient = (patient: UpdatePatientDto) => {
   return async (dispatch: any) => {
     try {
       await putPatient(patient);

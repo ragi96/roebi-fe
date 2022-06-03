@@ -458,17 +458,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/AddPatientDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/AddPatientDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/AddPatientDto"
               }
             }
           }
@@ -487,17 +487,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/UpdatePatientDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/UpdatePatientDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/UpdatePatientDto"
               }
             }
           }
@@ -1007,6 +1007,32 @@
         },
         "additionalProperties": false
       },
+      "AddPatientDto": {
+        "type": "object",
+        "properties": {
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstname": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryStamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "caseHistory": {
+            "type": "string",
+            "nullable": true
+          },
+          "room": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "AuthenticateRequest": {
         "required": [
           "password",
@@ -1249,6 +1275,40 @@
           "takingStamp": {
             "type": "integer",
             "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePatientDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstname": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryStamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "exitStamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "caseHistory": {
+            "type": "string",
+            "nullable": true
+          },
+          "room": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

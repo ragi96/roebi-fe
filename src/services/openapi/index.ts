@@ -7,6 +7,7 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AddMedicationDto } from './models/AddMedicationDto';
+export type { AddPatientDto } from './models/AddPatientDto';
 export type { AuthenticateRequest } from './models/AuthenticateRequest';
 export type { AuthenticateResponse } from './models/AuthenticateResponse';
 export type { CreatedJob } from './models/CreatedJob';
@@ -21,6 +22,7 @@ export { Role } from './models/Role';
 export type { Room } from './models/Room';
 export { Type } from './models/Type';
 export type { UpdateMedicationDto } from './models/UpdateMedicationDto';
+export type { UpdatePatientDto } from './models/UpdatePatientDto';
 export type { User } from './models/User';
 
 export { JobsService } from './services/JobsService';

@@ -1,7 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AddPatientDto } from '../models/AddPatientDto';
 import type { Patient } from '../models/Patient';
+import type { UpdatePatientDto } from '../models/UpdatePatientDto';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -26,7 +28,7 @@ export class PatientService {
      * @throws ApiError
      */
     public static postPatient(
-requestBody?: Patient,
+requestBody?: AddPatientDto,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -42,7 +44,7 @@ requestBody?: Patient,
      * @throws ApiError
      */
     public static putPatient(
-requestBody?: Patient,
+requestBody?: UpdatePatientDto,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
