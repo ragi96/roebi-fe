@@ -26,13 +26,13 @@ export default function NewPatient() {
         if (patient === null) {
             navigate("/patient")
         }
-    }, [patient]);
+    }, [patient, navigate]);
 
     useEffect(() => {
         if (rooms === null) {
             dispatch(allRooms())
         }
-    }, [rooms])
+    }, [rooms, dispatch])
 
     const goBack = async () => {
         await dispatch(loadPatients())
@@ -75,7 +75,7 @@ export default function NewPatient() {
 
     let roomItem = null;
     if (rooms != null) {
-        roomItem = rooms.map((room) => <MenuItem value={room.id}>{room.name}</MenuItem>)
+        roomItem = rooms.map((room) => <MenuItem key={room.id} value={room.id}>{room.name}</MenuItem>)
     }
     return (
         <Box>

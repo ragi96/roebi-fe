@@ -18,7 +18,7 @@ export default function RoomSingle() {
         if (room === null) {
             navigate("/room")
         }
-    }, [room]);
+    }, [room, navigate]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

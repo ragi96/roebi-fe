@@ -12,7 +12,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { allRooms } from '../../redux/actions/roomActions';
-import { copy } from '@testing-library/user-event/dist/types/clipboard';
 
 export default function PatientSingle() {
     const dispatch = useAppDispatch();
@@ -31,13 +30,13 @@ export default function PatientSingle() {
         if (patient === null) {
             navigate("/patient")
         }
-    }, [patient]);
+    }, [patient, navigate]);
 
     useEffect(() => {
         if (rooms === null) {
             dispatch(allRooms())
         }
-    }, [rooms])
+    }, [rooms, dispatch])
 
     useEffect(() => {
         if (patient?.room && patient.room.id != null) {
