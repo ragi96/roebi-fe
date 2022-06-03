@@ -1,8 +1,7 @@
 import { Box, CircularProgress, TextField, Button, Divider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../app/hooks';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import QRCode from "react-qr-code";
 import { updateRoom, loadRooms } from '../../redux/actions/roomActions';

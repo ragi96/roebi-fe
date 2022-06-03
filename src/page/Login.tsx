@@ -3,9 +3,8 @@ import { AuthenticateRequest } from '../services/openapi';
 import { TextField, Button, Box, Avatar, Typography } from "@mui/material/";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from '../app/hooks';
 import { loginUser } from '../redux/actions/userActions';
-import { useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { RootState } from '../app/store';
 
 export default function Login() {

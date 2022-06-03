@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Button, CircularProgress } from "@mui/material/";
-import { useAppDispatch } from '../../app/hooks';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { allMedicines, newMedicine, getMedicineById } from '../../redux/actions/medicineActions';
 import { RootState } from '../../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
