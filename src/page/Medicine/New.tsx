@@ -17,7 +17,7 @@ export default function NewMedicine() {
         if (medicine === null) {
             navigate("/medicine")
         }
-    }, [medicine]);
+    }, [medicine, navigate]);
 
     const goBack = async () => {
         await dispatch(loadMedicines())
