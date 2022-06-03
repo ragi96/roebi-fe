@@ -35,12 +35,19 @@ export const getRoomById = (id: number) => {
         dispatch({
           type: RoomActionTypes.ACTIVE_ROOM,
           payload: room,
-          payloadId: room.id,
         });
       }
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+export const loadRooms = () => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: RoomActionTypes.LOADED_ROOMS,
+    });
   };
 };
 

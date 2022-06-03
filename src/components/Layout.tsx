@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AppBar, Grid, IconButton, Toolbar, Drawer, Box } from "@mui/material"
+import { AppBar, Box, Grid, IconButton, Toolbar, Drawer } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAppSelector } from '../app/hooks';
 import { RootState } from '../app/store';
@@ -28,7 +28,11 @@ export default function Layout(props: ILayout) {
                         </Drawer>
                     </Grid>
                     <Grid item>
-                        {props.children}
+                        <Box sx={{
+                            display: "block", margin: "0 auto", maxWidth: "1200px", width: "100%", padding: "0 1rem"
+                        }}>
+                            {props.children}
+                        </Box>
                     </Grid>
                 </Grid >
                 :

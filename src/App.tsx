@@ -7,7 +7,7 @@ import RoomSingle from "./page/RoomSingle"
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { CheckAuthentication } from './hooks/checkAuthentication'
-import { PrivateRoute } from './utils/ProtectedRoute';
+import { PrivateRoute } from './utils/PrivateRoute';
 import Layout from './components/Layout';
 const theme = createTheme();
 

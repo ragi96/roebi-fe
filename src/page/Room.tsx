@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box } from "@mui/material/";
+import { Box, CircularProgress } from "@mui/material/";
 import { useAppDispatch } from '../app/hooks';
 import { useAppSelector } from '../app/hooks';
 import { allRooms } from '../redux/actions/roomActions';
@@ -14,12 +14,6 @@ const columns: GridColDef[] = [
         field: 'name',
         headerName: 'Name',
         flex: 1,
-        editable: true,
-    },
-    {
-        field: 'test',
-        headerName: 'test',
-        width: 100,
         editable: true,
     },
 ];
@@ -47,30 +41,27 @@ export default function Room() {
         dispatch(getRoomById(toActivateId))
     }
     return (
-        <Box sx={{
-            display: "block", margin: "0 auto", maxWidth: "1200px", width: "100%", padding: "0 1rem"
-        }}>
-            <Box>
-                <h1>Rooms</h1>
-                <div style={{ display: 'flex', height: '100%', minHeight: '500px' }}>
-                    <div style={{ flexGrow: 1 }}>
-                        {rooms !== null
-                            ?
-                            <DataGrid
-                                disableSelectionOnClick={true}
-                                rows={rooms}
-                                columns={columns}
-                                pageSize={5}
-                                rowsPerPageOptions={[5]}
-                                onRowClick={(rowData) => openDetail(rowData.row['id'])}
-                            />
-                            :
-                            <div></div>
-                        }
-
-                    </div>
+        <Box>
+            <h1>Rooms</h1>
+            <div style={{ display: 'flex', height: 'fit-content', minHeight: '350px' }}>
+                <div style={{ flexGrow: 1 }}>
+                    {rooms !== null
+                        ?
+                        <DataGrid
+                            disableSelectionOnClick={true}
+                            rows={rooms}
+                            columns={columns}
+                            pageSize={5}
+                            rowsPerPageOptions={[5]}
+                            onRowClick={(rowData) => openDetail(rowData.row['id'])}
+                        />
+                        :
+                        <Box>
+                            <CircularProgress />
+                        </Box>
+                    }
                 </div>
-            </Box>
-        </Box >
+            </div>
+        </Box>
     );
 }
