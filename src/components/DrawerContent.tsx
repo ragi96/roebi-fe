@@ -1,67 +1,85 @@
 import React from "react";
-import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleIcon from '@mui/icons-material/People';
 import BedroomChildIcon from '@mui/icons-material/BedroomChild';
 import MedicationIcon from '@mui/icons-material/Medication';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { logoutUser } from "../redux/actions/userActions";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { RootState } from "../app/store";
 
 
 export default function DrawerContent() {
     let dispatch = useAppDispatch();
     let navigate = useNavigate();
+    const user = useAppSelector((state: RootState) => state.reducers.user.currentUser);
 
     function handleLogout() {
         dispatch(logoutUser())
         navigate('/login');
     }
     return (
-        <div>
+        <Box>
             <List>
-                <ListItem component={Link} to="/dashboard">
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <DashboardIcon />
-                        </ListItemIcon>
-                        <ListItemText sx={{
-                            color: "#000"
-                        }}>Dashboard</ListItemText>
-                    </ListItemButton>
-                </ListItem>
-                <ListItem>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <PeopleIcon />
-                        </ListItemIcon>
-                        <ListItemText sx={{
-                            color: "#000"
-                        }}>Patient</ListItemText>
-                    </ListItemButton>
-                </ListItem>
-                <ListItem>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <MedicationIcon />
-                        </ListItemIcon>
-                        <ListItemText sx={{
-                            color: "#000"
-                        }}>Medikamente</ListItemText>
-                    </ListItemButton>
-                </ListItem>
-                <ListItem component={Link} to="/room">
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <BedroomChildIcon />
-                        </ListItemIcon>
-                        <ListItemText sx={{
-                            color: "#000"
-                        }}>Raum</ListItemText>
-                    </ListItemButton>
-                </ListItem>
+                {user?.role === 1 || user?.role === 2 || user?.role === 3
+                    ?
+                    <ListItem component={Link} to="/dashboard">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <DashboardIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>Dashboard</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
+                {user?.role === 1 || user?.role === 2
+                    ?
+                    <ListItem>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>Patient</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
+                {user?.role === 1 || user?.role === 2
+                    ?
+                    <ListItem>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <MedicationIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>Medikamente</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
+                {user?.role === 1
+                    ?
+                    <ListItem component={Link} to="/room">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <BedroomChildIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>Raum</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
             </List>
             <Divider />
             <List>
@@ -74,6 +92,6 @@ export default function DrawerContent() {
                     </ListItemButton>
                 </ListItem>
             </List>
-        </div >
+        </Box >
     )
 }
