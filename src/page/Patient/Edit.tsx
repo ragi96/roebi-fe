@@ -96,7 +96,7 @@ export default function PatientSingle() {
 
     let roomItem = null;
     if (rooms != null) {
-        roomItem = rooms.map((room) => <MenuItem key={room.id} value={room.id}>{room.name}</MenuItem>)
+        roomItem = rooms.map((ro) => <MenuItem key={ro.id} value={ro.id}>{ro.name}</MenuItem>)
     }
 
     if (patient != null && patient.entryStamp != null && patient.exitStamp != null) {

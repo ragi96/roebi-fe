@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { Box, Button, CircularProgress } from "@mui/material/";
 import { useAppDispatch } from '../../app/hooks';
 import { useAppSelector } from '../../app/hooks';
-import { allMedications, newMedication } from '../../redux/actions/medicationActions';
+import { allMedications, newMedication, getMedicationById } from '../../redux/actions/medicationActions';
 import { RootState } from '../../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { getMedicationById } from '../../redux/actions/medicationActions';
 import { useNavigate } from 'react-router-dom';
 
 const getMedicine = (params: any) => params.value.name;

@@ -85,12 +85,12 @@ export default function MedicationSingle() {
 
     let patientItem = null;
     if (patients != null) {
-        patientItem = patients.map((patient) => <MenuItem key={patient.id} value={patient.id}>{patient.firstname} {patient.lastName} </MenuItem>)
+        patientItem = patients.map((pat) => <MenuItem key={pat.id} value={pat.id}>{pat.firstname} {pat.lastName} </MenuItem>)
     }
 
     let medicineItem = null;
     if (medicines != null) {
-        medicineItem = medicines.map((medicine) => <MenuItem key={medicine.id} value={medicine.id}>{medicine.name}</MenuItem>)
+        medicineItem = medicines.map((med) => <MenuItem key={med.id} value={med.id}>{med.name}</MenuItem>)
     }
 
     if (medication != null) {
