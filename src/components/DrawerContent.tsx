@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleIcon from '@mui/icons-material/People';
@@ -27,7 +27,9 @@ export default function DrawerContent() {
                         <ListItemIcon>
                             <DashboardIcon />
                         </ListItemIcon>
-                        <ListItemText>Dashboard</ListItemText>
+                        <ListItemText sx={{
+                            color: "#000"
+                        }}>Dashboard</ListItemText>
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
@@ -35,7 +37,9 @@ export default function DrawerContent() {
                         <ListItemIcon>
                             <PeopleIcon />
                         </ListItemIcon>
-                        <ListItemText>Patient</ListItemText>
+                        <ListItemText sx={{
+                            color: "#000"
+                        }}>Patient</ListItemText>
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
@@ -43,7 +47,9 @@ export default function DrawerContent() {
                         <ListItemIcon>
                             <MedicationIcon />
                         </ListItemIcon>
-                        <ListItemText>Medikamente</ListItemText>
+                        <ListItemText sx={{
+                            color: "#000"
+                        }}>Medikamente</ListItemText>
                     </ListItemButton>
                 </ListItem>
                 <ListItem component={Link} to="/room">
@@ -51,7 +57,9 @@ export default function DrawerContent() {
                         <ListItemIcon>
                             <BedroomChildIcon />
                         </ListItemIcon>
-                        <ListItemText>Raum</ListItemText>
+                        <ListItemText sx={{
+                            color: "#000"
+                        }}>Raum</ListItemText>
                     </ListItemButton>
                 </ListItem>
             </List>
@@ -66,6 +74,6 @@ export default function DrawerContent() {
                     </ListItemButton>
                 </ListItem>
             </List>
-        </div>
+        </div >
     )
 }

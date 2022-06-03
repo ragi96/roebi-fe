@@ -14,7 +14,7 @@ export default function Layout(props: ILayout) {
     return (
         <Box>
             {isAuthenticated
-                ? <Grid container>
+                ? <Grid>
                     <AppBar position="relative">
                         <Toolbar>
                             <IconButton color="inherit" onClick={() => setOpen(true)}>
@@ -34,7 +34,7 @@ export default function Layout(props: ILayout) {
                 :
 
                 <Grid>
-                    <Grid item>
+                    <Grid>
                         {props.children}
                     </Grid>
                 </Grid>

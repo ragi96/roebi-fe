@@ -2,7 +2,7 @@ import { Reducer } from "redux";
 import UserState, {
   UserActionTypes,
   UserStateActions,
-} from "../actiontypes/index";
+} from "../actiontypes/user";
 
 const initialState: UserState = {
   authenticated: false,
@@ -26,7 +26,7 @@ const UserReducer: Reducer<UserState, UserStateActions> = (
     case UserActionTypes.SET_USER:
       return {
         authenticated: true,
-        loading: state.loading,
+        loading: false,
         currentUser: action.payload,
       };
     case UserActionTypes.LOADING_USER:

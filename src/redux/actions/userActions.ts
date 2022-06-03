@@ -2,9 +2,9 @@ import {
   OpenAPI,
   AuthenticateRequest,
   UserService,
-  User
+  User,
 } from "../../services/openapi";
-import { UserActionTypes } from "../actiontypes/index";
+import { UserActionTypes } from "../actiontypes/user";
 import type { RootState } from "../../app/store";
 
 const { postUserAuthenticate, getUserCurrent } = UserService;
@@ -15,7 +15,7 @@ OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
 export const loginUser = (request: AuthenticateRequest) => {
   return async (dispatch: any) => {
     try {
-      let response = await postUserAuthenticate(request);
+      const response = await postUserAuthenticate(request);
       OpenAPI.TOKEN = response.token ?? "";
       localStorage.setItem("bearer", response.token ?? "");
       if (response.user != null) {
@@ -33,14 +33,14 @@ const setUserData = (user: User) => {
       type: UserActionTypes.SET_USER,
       payload: user,
     });
-}
-}
+  };
+};
 
 export const getUserData = () => {
   return async (dispatch: any) => {
     dispatch({ type: UserActionTypes.LOADING_USER });
     try {
-      let user = await getUserCurrent();
+      const user = await getUserCurrent();
       if (user != null) {
         dispatch({
           type: UserActionTypes.SET_USER,
