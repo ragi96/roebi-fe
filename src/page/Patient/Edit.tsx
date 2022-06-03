@@ -25,7 +25,7 @@ export default function PatientSingle() {
     const [exitstamp, setExitstamp] = React.useState<Date | null>(new Date());
     const [room, setRoom] = useState("");
     const rooms = useAppSelector((state: RootState) => state.reducers.room.rooms);
-    let disabled = false;
+    let disabled = true;
 
     useEffect(() => {
         if (patient === null) {
