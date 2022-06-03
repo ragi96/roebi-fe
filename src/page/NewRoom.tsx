@@ -1,24 +1,27 @@
-import { Box, CircularProgress, TextField, Button, Divider, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../app/hooks';
-import { useAppSelector } from '../app/hooks';
-import { RootState } from '../app/store';
-import QRCode from "react-qr-code";
-import { updateRoom, loadRooms } from '../redux/actions/roomActions';
 import { Room } from '../services/openapi';
+import { Box, CircularProgress, TextField, Button, Divider, Typography } from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { createRoom, loadRooms } from '../redux/actions/roomActions';
+import { RootState } from '../app/store';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function RoomSingle() {
+export default function NewRoom() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const room = useAppSelector((state: RootState) => state.reducers.room.activeRoom);
+
     useEffect(() => {
         if (room === null) {
             navigate("/room")
         }
     }, [room]);
+
+    const goBack = async () => {
+        await dispatch(loadRooms())
+    }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -31,13 +34,10 @@ export default function RoomSingle() {
                 id: room.id,
                 name: newName
             }
-            await dispatch(updateRoom(request));
+            await dispatch(createRoom(request));
         }
     };
 
-    const goBack = async () => {
-        await dispatch(loadRooms())
-    }
 
     return (
         <Box>
@@ -47,10 +47,7 @@ export default function RoomSingle() {
                     <Button variant="outlined" onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
                         Zurück
                     </Button>
-                    <Typography sx={{ paddingTop: "2rem" }} variant="h2">{room.name}</Typography>
-                    <Box sx={{ padding: "2rem 0 3rem 0" }}>
-                        <QRCode value={room.id.toString()} />
-                    </Box>
+                    <Typography sx={{ padding: "2rem 0 3rem 0" }} variant="h2">Raum erstellen</Typography>
                     <Divider />
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, maxWidth: "500px", paddingTop: "1rem" }}>
                         <TextField
@@ -82,14 +79,13 @@ export default function RoomSingle() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Speichern
+                            Erstellen
                         </Button>
                     </Box>
                 </Box>
                 :
                 <CircularProgress />
             }
-        </Box>
-
+        </Box >
     )
 }

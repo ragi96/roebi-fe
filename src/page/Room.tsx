@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Box, CircularProgress } from "@mui/material/";
+import { Box, Button, CircularProgress } from "@mui/material/";
 import { useAppDispatch } from '../app/hooks';
 import { useAppSelector } from '../app/hooks';
-import { allRooms } from '../redux/actions/roomActions';
+import { allRooms, newRoom } from '../redux/actions/roomActions';
 import { RootState } from '../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { getRoomById } from '../redux/actions/roomActions';
@@ -20,7 +20,7 @@ const columns: GridColDef[] = [
 
 export default function Room() {
     const navigate = useNavigate();
-    let activeRoom = useAppSelector((state: RootState) => state.reducers.room.activeRoom);
+    const activeRoom = useAppSelector((state: RootState) => state.reducers.room.activeRoom);
     const rooms = useAppSelector((state: RootState) => state.reducers.room.rooms);
     const dispatch = useAppDispatch();
 
@@ -33,6 +33,8 @@ export default function Room() {
             let activeId = activeRoom.id;
             if (activeId !== 0 && activeId !== undefined) {
                 navigate("/room/" + activeId)
+            } else if (activeId === 0) {
+                navigate("/room/new")
             }
         }
     }, [activeRoom, navigate, dispatch]);
@@ -40,13 +42,18 @@ export default function Room() {
     function openDetail(toActivateId: number) {
         dispatch(getRoomById(toActivateId))
     }
+
+    function createNew() {
+        dispatch(newRoom())
+    }
+
     return (
         <Box>
             <h1>Rooms</h1>
-            <div style={{ display: 'flex', height: 'fit-content', minHeight: '350px' }}>
-                <div style={{ flexGrow: 1 }}>
-                    {rooms !== null
-                        ?
+            <div style={{ display: 'flex', height: 'fit-content', minHeight: '375px' }}>
+                {rooms !== null
+                    ?
+                    <Box style={{ flexGrow: 1 }}>
                         <DataGrid
                             disableSelectionOnClick={true}
                             rows={rooms}
@@ -55,12 +62,16 @@ export default function Room() {
                             rowsPerPageOptions={[5]}
                             onRowClick={(rowData) => openDetail(rowData.row['id'])}
                         />
-                        :
-                        <Box>
-                            <CircularProgress />
-                        </Box>
-                    }
-                </div>
+
+                        <Button variant="contained" sx={{ marginTop: "1rem" }} onClick={createNew}>
+                            Raum erstellen
+                        </Button>
+                    </Box>
+                    :
+                    <Box>
+                        <CircularProgress />
+                    </Box>
+                }
             </div>
         </Box>
     );

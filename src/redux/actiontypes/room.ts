@@ -5,6 +5,7 @@ export enum RoomActionTypes {
   LOADED_ROOMS = "LOADED_ROOMS",
   LOADING_ROOMS = "LOADING_ROOMS",
   SET_ROOMS = "SET_ROOMS",
+  NEW_ROOM = "NEW_ROOM",
 }
 
 export default interface RoomState {
@@ -31,8 +32,13 @@ export interface roomStateSet {
   payload: Array<Room> | null;
 }
 
+export interface roomStateNew {
+  type: RoomActionTypes.NEW_ROOM;
+}
+
 export type RoomStateActions =
   | roomStateActiveRoom
   | roomStateLoading
   | roomStateLoaded
-  | roomStateSet;
+  | roomStateSet
+  | roomStateNew;

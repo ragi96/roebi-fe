@@ -29,7 +29,7 @@ export default function Layout(props: ILayout) {
                     </Grid>
                     <Grid item>
                         <Box sx={{
-                            display: "block", margin: "0 auto", maxWidth: "1200px", width: "100%", padding: "0 1rem"
+                            display: "block", margin: "0 auto", maxWidth: "1200px", width: "100%", padding: "2rem 1rem"
                         }}>
                             {props.children}
                         </Box>

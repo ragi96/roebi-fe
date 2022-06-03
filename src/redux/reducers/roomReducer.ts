@@ -4,6 +4,8 @@ import RoomState, {
   RoomStateActions,
 } from "../actiontypes/room";
 
+import { Room } from "../../services/openapi";
+
 const initialState: RoomState = {
   activeRoom: null,
   loading: false,
@@ -38,6 +40,16 @@ const RoomReducer: Reducer<RoomState, RoomStateActions> = (
         activeRoom: null,
         loading: false,
         rooms: action.payload,
+      };
+    case RoomActionTypes.NEW_ROOM:
+      const newRoom: Room = {
+        id: 0,
+        name: "",
+      };
+      return {
+        activeRoom: newRoom,
+        loading: false,
+        rooms: state.rooms,
       };
     default:
       return state;

@@ -43,6 +43,14 @@ export const getRoomById = (id: number) => {
   };
 };
 
+export const newRoom = () => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: RoomActionTypes.NEW_ROOM,
+    });
+  };
+};
+
 export const loadRooms = () => {
   return async (dispatch: any) => {
     dispatch({
@@ -58,6 +66,7 @@ export const createRoom = (room: Room) => {
       dispatch({
         type: RoomActionTypes.LOADED_ROOMS,
       });
+      dispatch(allRooms());
     } catch (err) {
       console.log(err);
     }
