@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AppBar, Grid, IconButton, Toolbar, Drawer } from "@mui/material"
+import { AppBar, Grid, IconButton, Toolbar, Drawer, Box } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAppSelector } from '../app/hooks';
 import { RootState } from '../app/store';
@@ -8,12 +8,11 @@ import DrawerContent from './DrawerContent';
 interface ILayout {
     children: React.ReactNode
 }
-
 export default function Layout(props: ILayout) {
     const [open, setOpen] = useState(false);
     const isAuthenticated = useAppSelector((state: RootState) => state.reducers.user.authenticated);
     return (
-        <div>
+        <Box>
             {isAuthenticated
                 ? <Grid container>
                     <AppBar position="relative">
@@ -33,13 +32,13 @@ export default function Layout(props: ILayout) {
                     </Grid>
                 </Grid >
                 :
+
                 <Grid>
                     <Grid item>
                         {props.children}
                     </Grid>
                 </Grid>
             }
-
-        </div >
+        </Box>
     )
 }

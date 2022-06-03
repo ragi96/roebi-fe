@@ -38,11 +38,18 @@ export default function Login() {
                 alignItems: 'center',
             }}>
             <Box>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <LockOutlinedIcon />
-                </Avatar>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main', width: 128, height: 128 }}>
+                        <LockOutlinedIcon sx={{ fontSize: 96 }} />
+                    </Avatar>
+                </Box>
                 <Typography component="h1" variant="h5">
-                    Login in
+                    Login
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
