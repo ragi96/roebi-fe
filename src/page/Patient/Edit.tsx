@@ -173,6 +173,7 @@ export default function PatientSingle() {
                                 value={new Date(patient.entryStamp * 1000)}
                                 autoFocus
                                 disabled
+                                inputFormat="dd.mm.yyyy HH:mm"
                                 ampm={false}
                                 onChange={(newValue) => { setEntrystamp(newValue); }}
                             />
@@ -182,6 +183,7 @@ export default function PatientSingle() {
                                 value={new Date(patient.exitStamp * 1000)}
                                 autoFocus
                                 ampm={false}
+                                inputFormat="dd.mm.yyyy HH:mm"
                                 onChange={(newValue) => { setExitstamp(newValue); }}
                             />
                         </LocalizationProvider>

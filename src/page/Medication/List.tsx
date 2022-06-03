@@ -17,13 +17,13 @@ const columns: GridColDef[] = [
     {
         field: 'patient',
         headerName: 'Patient',
-        width: 150,
+        width: 250,
         valueGetter: getPatientName
     },
     {
         field: 'medicine',
         headerName: 'Medikament',
-        width: 150,
+        width: 200,
         valueGetter: getMedicine,
     },
     {

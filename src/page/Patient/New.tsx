@@ -129,16 +129,15 @@ export default function NewPatient() {
                                 label="Eintritt"
                                 value={entrystamp}
                                 autoFocus
+                                inputFormat="dd.mm.yyyy HH:mm"
                                 ampm={false}
                                 onChange={(newValue) => { setEntrystamp(newValue); }}
                             />
                         </LocalizationProvider>
                         {roomItem != null ?
                             <FormControl margin="normal" fullWidth>
-                                <InputLabel id="demo-simple-select-label">Raum</InputLabel>
+                                <InputLabel>Raum</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
                                     value={room}
                                     label="Raum"
                                     required

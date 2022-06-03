@@ -94,8 +94,7 @@ export const createMedication = (medication: AddMedicationDto) => {
       dispatch({
         type: MedicationActionTypes.LOADED_MEDICATIONS,
       });
-      if (medication.patient != null)
-        dispatch(getMedicationUser(medication.patient));
+      dispatch(allMedications());
     } catch (err) {
       console.log(err);
     }
