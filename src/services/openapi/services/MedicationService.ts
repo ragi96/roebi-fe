@@ -59,6 +59,23 @@ requestBody?: UpdateMedicationDto,
      * @returns Medication Success
      * @throws ApiError
      */
+    public static getMedicationUser(
+id: number,
+): CancelablePromise<Array<Medication>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/Medication/{id}/User',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns Medication Success
+     * @throws ApiError
+     */
     public static getMedication1(
 id: number,
 ): CancelablePromise<Medication> {

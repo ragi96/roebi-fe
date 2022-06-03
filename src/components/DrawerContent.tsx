@@ -5,6 +5,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import BedroomChildIcon from '@mui/icons-material/BedroomChild';
 import MedicationIcon from '@mui/icons-material/Medication';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { logoutUser } from "../redux/actions/userActions";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router";
@@ -48,6 +49,20 @@ export default function DrawerContent() {
                             <ListItemText sx={{
                                 color: "#000"
                             }}>Patient</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
+                {user?.role === 1 || user?.role === 2
+                    ?
+                    <ListItem component={Link} to="/medication">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <AccessTimeIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>Medikation</ListItemText>
                         </ListItemButton>
                     </ListItem>
                     : ''

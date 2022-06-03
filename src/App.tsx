@@ -10,6 +10,9 @@ import NewMedicine from './page/Medicine/New';
 import PatientList from "./page/Patient/List"
 import PatientEdit from "./page/Patient/Edit"
 import NewPatient from './page/Patient/New';
+import MedicationList from "./page/Medication/List"
+import MedicationEdit from "./page/Medication/Edit"
+import NewMedication from './page/Medication/New';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { CheckAuthentication } from './hooks/checkAuthentication'
@@ -42,6 +45,9 @@ function App() {
             <Route path="/patient" element={<PrivateRoute roles={[1, 2]} component={PatientList} />} />
             <Route path="/patient/*" element={<PrivateRoute roles={[1, 2]} component={PatientEdit} />} />
             <Route path="/patient/new" element={<PrivateRoute roles={[1, 2]} component={NewPatient} />} />
+            <Route path="/medication" element={<PrivateRoute roles={[1, 2]} component={MedicationList} />} />
+            <Route path="/medication/*" element={<PrivateRoute roles={[1, 2]} component={MedicationEdit} />} />
+            <Route path="/medication/new" element={<PrivateRoute roles={[1, 2]} component={NewMedication} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Layout>
