@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { Box, Button, CircularProgress } from "@mui/material/";
 import { useAppDispatch } from '../../app/hooks';
 import { useAppSelector } from '../../app/hooks';
-import { allRooms, newRoom } from '../../redux/actions/roomActions';
+import { allMedicines, newMedicine, getMedicineById } from '../../redux/actions/medicineActions';
 import { RootState } from '../../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { getRoomById } from '../../redux/actions/roomActions';
 import { useNavigate } from 'react-router-dom';
 
 const columns: GridColDef[] = [
@@ -18,45 +17,45 @@ const columns: GridColDef[] = [
     },
 ];
 
-export default function Room() {
+export default function Medicine() {
     const navigate = useNavigate();
-    const activeRoom = useAppSelector((state: RootState) => state.reducers.room.activeRoom);
-    const rooms = useAppSelector((state: RootState) => state.reducers.room.rooms);
+    const activeMedicine = useAppSelector((state: RootState) => state.reducers.medicine.activeMedicine);
+    const medicines = useAppSelector((state: RootState) => state.reducers.medicine.medicines);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(allRooms())
+        dispatch(allMedicines())
     }, []);
 
     useEffect(() => {
-        if (activeRoom !== null) {
-            let activeId = activeRoom.id;
+        if (activeMedicine !== null) {
+            let activeId = activeMedicine.id;
             if (activeId !== 0 && activeId !== undefined) {
-                navigate("/room/" + activeId)
+                navigate("/medicine/" + activeId)
             } else if (activeId === 0) {
-                navigate("/room/new")
+                navigate("/medicine/new")
             }
         }
-    }, [activeRoom, navigate, dispatch]);
+    }, [activeMedicine, navigate, dispatch]);
 
     function openDetail(toActivateId: number) {
-        dispatch(getRoomById(toActivateId))
+        dispatch(getMedicineById(toActivateId))
     }
 
     function createNew() {
-        dispatch(newRoom())
+        dispatch(newMedicine())
     }
 
     return (
         <Box>
-            <h1>Räume</h1>
+            <h1>Medikamente</h1>
             <div style={{ display: 'flex', height: 'fit-content', minHeight: '371px' }}>
-                {rooms !== null
+                {medicines !== null
                     ?
                     <Box style={{ flexGrow: 1 }}>
                         <DataGrid
                             disableSelectionOnClick={true}
-                            rows={rooms}
+                            rows={medicines}
                             columns={columns}
                             pageSize={5}
                             rowsPerPageOptions={[5]}
@@ -64,7 +63,7 @@ export default function Room() {
                         />
 
                         <Button variant="contained" sx={{ marginTop: "1rem" }} onClick={createNew}>
-                            Raum erstellen
+                            Medikament erstellen
                         </Button>
                     </Box>
                     :

@@ -54,7 +54,7 @@ export default function DrawerContent() {
                 }
                 {user?.role === 1 || user?.role === 2
                     ?
-                    <ListItem>
+                    <ListItem component={Link} to="/medicine">
                         <ListItemButton>
                             <ListItemIcon>
                                 <MedicationIcon />

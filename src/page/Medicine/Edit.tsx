@@ -1,58 +1,62 @@
-import { Room } from '../../services/openapi';
 import { Box, CircularProgress, TextField, Button, Divider, Typography } from '@mui/material';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { createRoom, loadRooms } from '../../redux/actions/roomActions';
-import { RootState } from '../../app/store';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
+import { RootState } from '../../app/store';
+import QRCode from "react-qr-code";
+import { updateMedicine, loadMedicines } from '../../redux/actions/medicineActions';
+import { Medicine } from '../../services/openapi';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-export default function NewRoom() {
+export default function MedicineSingle() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [name, setName] = useState("");
-    const room = useAppSelector((state: RootState) => state.reducers.room.activeRoom);
+    const medicine = useAppSelector((state: RootState) => state.reducers.medicine.activeMedicine);
 
     useEffect(() => {
-        if (room === null) {
-            navigate("/room")
+        if (medicine === null) {
+            navigate("/medicine")
         }
-    }, [room]);
-
-    const goBack = async () => {
-        await dispatch(loadRooms())
-    }
+    }, [medicine]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (room != null) {
+        if (medicine != null) {
             let newName = name;
             if (newName === '') {
-                newName = room.name ?? '';
+                newName = medicine.name ?? '';
             }
-            let request: Room = {
-                id: room.id,
+            let request: Medicine = {
+                id: medicine.id,
                 name: newName
             }
-            await dispatch(createRoom(request));
+            await dispatch(updateMedicine(request));
         }
     };
 
+    const goBack = async () => {
+        await dispatch(loadMedicines())
+    }
 
     return (
         <Box>
-            {room !== null && room.id != null
+            {medicine !== null && medicine.id != null
                 ?
                 <Box>
                     <Button variant="outlined" onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
                         Zurück
                     </Button>
-                    <Typography sx={{ padding: "2rem 0 3rem 0" }} variant="h2">Raum hinzufügen</Typography>
+                    <Typography sx={{ paddingTop: "2rem" }} variant="h2">{medicine.name}</Typography>
+                    <Box sx={{ padding: "2rem 0 3rem 0" }}>
+                        <QRCode value={medicine.id.toString()} />
+                    </Box>
                     <Divider />
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, maxWidth: "500px", paddingTop: "1rem" }}>
                         <TextField
                             margin="normal"
-                            defaultValue={room.id.toString()}
+                            defaultValue={medicine.id.toString()}
                             required
                             fullWidth
                             id="id"
@@ -64,7 +68,7 @@ export default function NewRoom() {
                         />
                         <TextField
                             margin="normal"
-                            defaultValue={room.name}
+                            defaultValue={medicine.name}
                             required
                             fullWidth
                             id="name"
@@ -79,13 +83,14 @@ export default function NewRoom() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Erstellen
+                            Speichern
                         </Button>
                     </Box>
                 </Box>
                 :
                 <CircularProgress />
             }
-        </Box >
+        </Box>
+
     )
 }
