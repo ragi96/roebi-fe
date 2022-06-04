@@ -23,6 +23,7 @@ export type { Room } from './models/Room';
 export { Type } from './models/Type';
 export type { UpdateMedicationDto } from './models/UpdateMedicationDto';
 export type { UpdatePatientDto } from './models/UpdatePatientDto';
+export type { UpdateUserDto } from './models/UpdateUserDto';
 export type { User } from './models/User';
 
 export { JobsService } from './services/JobsService';

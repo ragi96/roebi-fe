@@ -3,6 +3,7 @@
 /* eslint-disable */
 import type { AuthenticateRequest } from '../models/AuthenticateRequest';
 import type { AuthenticateResponse } from '../models/AuthenticateResponse';
+import type { UpdateUserDto } from '../models/UpdateUserDto';
 import type { User } from '../models/User';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -76,6 +77,22 @@ requestBody?: User,
         return __request(OpenAPI, {
             method: 'POST',
             url: '/User',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @param requestBody 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static putCurrent(
+requestBody?: UpdateUserDto,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/current',
             body: requestBody,
             mediaType: 'application/json',
         });

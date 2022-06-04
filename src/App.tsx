@@ -18,6 +18,7 @@ import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { CheckAuthentication } from './hooks/checkAuthentication'
 import { PrivateRoute } from './utils/PrivateRoute';
 import Layout from './components/Layout';
+import MyAccount from './page/Account/MyAccount';
 
 const theme = createTheme();
 
@@ -36,6 +37,7 @@ function App() {
               path="dashboard"
               element={<PrivateRoute roles={[1, 2, 3]} component={Dashboard} />}
             />
+            <Route path="/account" element={<PrivateRoute roles={[1, 2, 3]} component={MyAccount} />} />
             <Route path="/room" element={<PrivateRoute roles={[1]} component={RoomList} />} />
             <Route path="/room/*" element={<PrivateRoute roles={[1]} component={RoomEdit} />} />
             <Route path="/room/new" element={<PrivateRoute roles={[1]} component={NewRoom} />} />

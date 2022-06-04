@@ -3,11 +3,12 @@ import {
   AuthenticateRequest,
   UserService,
   User,
+  UpdateUserDto,
 } from "../../services/openapi";
 import { UserActionTypes } from "../actiontypes/user";
 import type { RootState } from "../../app/store";
 
-const { postUserAuthenticate, getUserCurrent } = UserService;
+const { postUserAuthenticate, getUserCurrent, putCurrent } = UserService;
 
 OpenAPI.BASE = "https://localhost:7084";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
@@ -59,6 +60,20 @@ export const logoutUser = () => (dispatch: any) => {
   });
   localStorage.setItem("bearer", "");
   window.location.href = "/";
+};
+
+export const updateCurrentUser = (updateUser: UpdateUserDto) => {
+  return async (dispatch: any) => {
+    dispatch({ type: UserActionTypes.LOADING_USER });
+    try {
+      const rep = await putCurrent(updateUser);
+      if (rep === 2) {
+        dispatch(getUserCurrent);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 };
 
 export const selectCurrentUser = (state: RootState) =>

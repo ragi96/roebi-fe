@@ -98,6 +98,16 @@ export default function DrawerContent() {
             </List>
             <Divider />
             <List>
+                <ListItem component={Link} to="/account">
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <BedroomChildIcon />
+                        </ListItemIcon>
+                        <ListItemText sx={{
+                            color: "#000"
+                        }}>Mein Account</ListItemText>
+                    </ListItemButton>
+                </ListItem>
                 <ListItem onClick={handleLogout}>
                     <ListItemButton>
                         <ListItemIcon>
