@@ -6,6 +6,8 @@ import BedroomChildIcon from '@mui/icons-material/BedroomChild';
 import MedicationIcon from '@mui/icons-material/Medication';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import NotesIcon from '@mui/icons-material/Notes';
 import { logoutUser } from "../redux/actions/userActions";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router";
@@ -101,13 +103,27 @@ export default function DrawerContent() {
                 <ListItem component={Link} to="/account">
                     <ListItemButton>
                         <ListItemIcon>
-                            <BedroomChildIcon />
+                            <AccountCircleIcon />
                         </ListItemIcon>
                         <ListItemText sx={{
                             color: "#000"
                         }}>Mein Account</ListItemText>
                     </ListItemButton>
                 </ListItem>
+                {user?.role === 1
+                    ?
+                    <ListItem component={Link} to="/logs">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <NotesIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>Logs</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
                 <ListItem onClick={handleLogout}>
                     <ListItemButton>
                         <ListItemIcon>

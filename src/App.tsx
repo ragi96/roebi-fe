@@ -3,6 +3,7 @@ import Login from "./page/Login"
 import Dashboard from "./page/Dashboard"
 import RoomList from "./page/Room/List"
 import RoomEdit from "./page/Room/Edit"
+import LogList from "./page/Log/List"
 import NewRoom from './page/Room/New';
 import MedicineList from "./page/Medicine/List"
 import MedicineEdit from "./page/Medicine/Edit"
@@ -50,6 +51,7 @@ function App() {
             <Route path="/medication" element={<PrivateRoute roles={[1, 2]} component={MedicationList} />} />
             <Route path="/medication/*" element={<PrivateRoute roles={[1, 2]} component={MedicationEdit} />} />
             <Route path="/medication/new" element={<PrivateRoute roles={[1, 2]} component={NewMedication} />} />
+            <Route path="/logs" element={<PrivateRoute roles={[1]} component={LogList} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Layout>
