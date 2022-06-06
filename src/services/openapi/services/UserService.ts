@@ -4,6 +4,9 @@
 import type { AddUserDto } from '../models/AddUserDto';
 import type { AuthenticateRequest } from '../models/AuthenticateRequest';
 import type { AuthenticateResponse } from '../models/AuthenticateResponse';
+import type { PasswordCurrentUpdate } from '../models/PasswordCurrentUpdate';
+import type { PasswordUpdate } from '../models/PasswordUpdate';
+import type { UpdateCurrentUserDto } from '../models/UpdateCurrentUserDto';
 import type { UpdateUserDto } from '../models/UpdateUserDto';
 import type { User } from '../models/User';
 
@@ -41,6 +44,22 @@ requestBody?: AuthenticateRequest,
     }
 
     /**
+     * @param requestBody 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static putUserCurrent(
+requestBody?: UpdateCurrentUserDto,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/User/current',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
      * @returns User Success
      * @throws ApiError
      */
@@ -57,7 +76,7 @@ requestBody?: AuthenticateRequest,
      * @throws ApiError
      */
     public static putUser(
-requestBody?: User,
+requestBody?: UpdateUserDto,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
@@ -88,12 +107,28 @@ requestBody?: AddUserDto,
      * @returns any Success
      * @throws ApiError
      */
-    public static putCurrent(
-requestBody?: UpdateUserDto,
+    public static putUserChangePassword(
+requestBody?: PasswordUpdate,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/current',
+            url: '/User/change-password',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @param requestBody 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static putUserCurrentChangePassword(
+requestBody?: PasswordCurrentUpdate,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/User/current-change-password',
             body: requestBody,
             mediaType: 'application/json',
         });

@@ -1,7 +1,15 @@
-import { AddUserDto, OpenAPI, User, UserService } from "../../services/openapi";
+import {
+  AddUserDto,
+  OpenAPI,
+  UpdateUserDto,
+  UserService,
+  PasswordUpdate,
+  PasswordCurrentUpdate,
+} from "../../services/openapi";
 import { UserActionTypes } from "../actiontypes/user";
 
-const { getUser, getUser1, postUser, putUser } = UserService;
+const { getUser, getUser1, postUser, putUser, putUserChangePassword } =
+  UserService;
 
 OpenAPI.BASE = process.env.REACT_APP_API_URI ?? "";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
@@ -43,6 +51,20 @@ export const getUserById = (id: number) => {
   };
 };
 
+export const updatePasswordOfUser = (updatePassword: PasswordUpdate) => {
+  return async (dispatch: any) => {
+    dispatch({ type: UserActionTypes.LOADING_USERS });
+    try {
+      const rep = await putUserChangePassword(updatePassword);
+      if (rep === 2) {
+        dispatch(allUsers);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const newUser = () => {
   return async (dispatch: any) => {
     dispatch({
@@ -73,7 +95,7 @@ export const createUser = (user: AddUserDto) => {
   };
 };
 
-export const updateUser = (user: User) => {
+export const updateUser = (user: UpdateUserDto) => {
   return async (dispatch: any) => {
     try {
       await putUser(user);

@@ -59,7 +59,6 @@ export default function NewUser() {
     };
 
     const handleRoleChange = (event: SelectChangeEvent) => {
-        console.log(event.target.value)
         setRole(event.target.value as string);
     };
 

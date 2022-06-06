@@ -54,7 +54,6 @@ export default function User() {
         dispatch(allUsers())
     }, []);
 
-    console.log(users);
     useEffect(() => {
         if (activeUser !== null) {
             let activeId = activeUser.id;
