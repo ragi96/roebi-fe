@@ -4,7 +4,7 @@ import { MedicineActionTypes } from "../actiontypes/medicine";
 const { getMedicine, getMedicine1, postMedicine, putMedicine } =
   MedicineService;
 
-OpenAPI.BASE = "https://localhost:7084";
+OpenAPI.BASE = process.env.REACT_APP_API_URI ?? "";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
 
 export const allMedicines = () => {

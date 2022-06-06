@@ -8,7 +8,7 @@ import { PatientActionTypes } from "../actiontypes/patient";
 
 const { getPatient, getPatient1, postPatient, putPatient } = PatientService;
 
-OpenAPI.BASE = "https://localhost:7084";
+OpenAPI.BASE = process.env.REACT_APP_API_URI ?? "";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
 
 export const allPatients = () => {

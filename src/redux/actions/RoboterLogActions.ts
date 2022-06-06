@@ -3,7 +3,7 @@ import { RoboterLogActionTypes } from "../actiontypes/roboterLog";
 
 const { getRoboterLog } = RoboterLogService;
 
-OpenAPI.BASE = "https://localhost:7084";
+OpenAPI.BASE = process.env.REACT_APP_API_URI ?? "";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
 
 export const allRoboterLogs = () => {

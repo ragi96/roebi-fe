@@ -10,7 +10,7 @@ import type { RootState } from "../../app/store";
 
 const { postUserAuthenticate, getUserCurrent, putCurrent } = UserService;
 
-OpenAPI.BASE = "https://localhost:7084";
+OpenAPI.BASE = process.env.REACT_APP_API_URI ?? "";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
 
 export const loginUser = (request: AuthenticateRequest) => {

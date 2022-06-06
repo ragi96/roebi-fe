@@ -3,7 +3,9 @@ import { LogActionTypes } from "../actiontypes/log";
 
 const { getLog } = LogService;
 
-OpenAPI.BASE = "https://localhost:7084";
+console.log(process.env.REACT_APP_API_URI);
+
+OpenAPI.BASE = process.env.REACT_APP_API_URI ?? "";
 OpenAPI.TOKEN = localStorage.getItem("bearer") ?? "";
 
 export const allLogs = () => {
