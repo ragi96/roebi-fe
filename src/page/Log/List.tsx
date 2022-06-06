@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { allLogs } from '../../redux/actions/logActions';
-import { allRoboterLogs } from '../../redux/actions/RoboterLogActions';
+import { allRoboterLogs } from '../../redux/actions/roboterLogActions';
 
 const getTimestamp = (params: any) => new Date(params.value * 1000).toLocaleString();
 
@@ -33,8 +33,6 @@ export default function Logs() {
         dispatch(allLogs())
         dispatch(allRoboterLogs())
     }, []);
-
-    console.log(roboterLogs);
 
     return (
         <Box>

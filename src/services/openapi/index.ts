@@ -8,6 +8,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AddMedicationDto } from './models/AddMedicationDto';
 export type { AddPatientDto } from './models/AddPatientDto';
+export type { AddUserDto } from './models/AddUserDto';
 export type { AuthenticateRequest } from './models/AuthenticateRequest';
 export type { AuthenticateResponse } from './models/AuthenticateResponse';
 export type { CreatedJob } from './models/CreatedJob';

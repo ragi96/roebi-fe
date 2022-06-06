@@ -1,59 +1,89 @@
 import React, { useEffect } from 'react';
 import { Box, Button, CircularProgress } from "@mui/material/";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { allMedicines, newMedicine, getMedicineById } from '../../redux/actions/medicineActions';
+import { allUsers, newUser, getUserById } from '../../redux/actions/userActions';
 import { RootState } from '../../app/store';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
 
+const getRole = (params: any) => {
+    switch (params.value) {
+        case 1:
+            return "Admin"
+        case 2:
+            return "User"
+        case 3:
+            return "Roboter"
+        default:
+            break;
+    }
+};
+
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-        field: 'name',
-        headerName: 'Name',
+        field: 'username',
+        headerName: 'Username',
         flex: 1,
+    },
+    {
+        field: 'firstName',
+        headerName: 'Vorname',
+        flex: 1,
+    },
+    {
+        field: 'lastName',
+        headerName: 'Nachname',
+        flex: 1,
+    },
+    {
+        field: 'role',
+        headerName: 'Rolle',
+        flex: 1,
+        valueGetter: getRole
     },
 ];
 
-export default function Medicine() {
+export default function User() {
     const navigate = useNavigate();
-    const activeMedicine = useAppSelector((state: RootState) => state.reducers.medicine.activeMedicine);
-    const medicines = useAppSelector((state: RootState) => state.reducers.medicine.medicines);
+    const activeUser = useAppSelector((state: RootState) => state.reducers.users.activeUser);
+    const users = useAppSelector((state: RootState) => state.reducers.users.users);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(allMedicines())
+        dispatch(allUsers())
     }, []);
 
+    console.log(users);
     useEffect(() => {
-        if (activeMedicine !== null) {
-            let activeId = activeMedicine.id;
+        if (activeUser !== null) {
+            let activeId = activeUser.id;
             if (activeId !== 0 && activeId !== undefined) {
-                navigate("/medicine/" + activeId)
+                navigate("/user/" + activeId)
             } else if (activeId === 0) {
-                navigate("/medicine/new")
+                navigate("/user/new")
             }
         }
-    }, [activeMedicine, navigate, dispatch]);
+    }, [activeUser, navigate, dispatch]);
 
     function openDetail(toActivateId: number) {
-        dispatch(getMedicineById(toActivateId))
+        dispatch(getUserById(toActivateId))
     }
 
     function createNew() {
-        dispatch(newMedicine())
+        dispatch(newUser())
     }
 
     return (
         <Box>
-            <h1>Medikamente</h1>
+            <h1>Benutzer</h1>
             <div style={{ display: 'flex', height: 'fit-content', minHeight: '371px' }}>
-                {medicines !== null
+                {users !== null
                     ?
                     <Box style={{ flexGrow: 1 }}>
                         <DataGrid
                             disableSelectionOnClick={true}
-                            rows={medicines}
+                            rows={users}
                             columns={columns}
                             pageSize={5}
                             rowsPerPageOptions={[5]}
@@ -61,7 +91,7 @@ export default function Medicine() {
                         />
 
                         <Button variant="contained" sx={{ marginTop: "1rem" }} onClick={createNew}>
-                            Medikament erstellen
+                            Benutzer erstellen
                         </Button>
                     </Box>
                     :

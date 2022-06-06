@@ -4,10 +4,12 @@ import UserState, {
   UserStateActions,
 } from "../actiontypes/user";
 
+import { User } from "../../services/openapi";
+
 const initialState: UserState = {
-  authenticated: false,
+  activeUser: null,
   loading: false,
-  currentUser: null,
+  users: null,
 };
 
 const UserReducer: Reducer<UserState, UserStateActions> = (
@@ -15,25 +17,42 @@ const UserReducer: Reducer<UserState, UserStateActions> = (
   action: UserStateActions
 ) => {
   switch (action.type) {
-    case UserActionTypes.SET_AUTHENTICATED:
+    case UserActionTypes.ACTIVE_USER:
       return {
-        loading: state.loading,
-        authenticated: true,
-        currentUser: state.currentUser,
-      };
-    case UserActionTypes.SET_UNAUTHENTICATED:
-      return initialState;
-    case UserActionTypes.SET_USER:
-      return {
-        authenticated: true,
+        activeUser: action.payload,
         loading: false,
-        currentUser: action.payload,
+        users: state.users,
       };
-    case UserActionTypes.LOADING_USER:
+    case UserActionTypes.LOADING_USERS:
       return {
-        authenticated: state.authenticated,
+        activeUser: state.activeUser,
         loading: true,
-        currentUser: state.currentUser,
+        users: state.users,
+      };
+    case UserActionTypes.LOADED_USERS:
+      return {
+        activeUser: null,
+        loading: false,
+        users: state.users,
+      };
+    case UserActionTypes.SET_USERS:
+      return {
+        activeUser: null,
+        loading: false,
+        users: action.payload,
+      };
+    case UserActionTypes.NEW_USER:
+      const newUser: User = {
+        id: 0,
+        firstName: "",
+        lastName: "",
+        username: "",
+        role: 2,
+      };
+      return {
+        activeUser: newUser,
+        loading: false,
+        users: state.users,
       };
     default:
       return state;

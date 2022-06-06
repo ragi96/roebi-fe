@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AddUserDto } from '../models/AddUserDto';
 import type { AuthenticateRequest } from '../models/AuthenticateRequest';
 import type { AuthenticateResponse } from '../models/AuthenticateResponse';
 import type { UpdateUserDto } from '../models/UpdateUserDto';
@@ -72,7 +73,7 @@ requestBody?: User,
      * @throws ApiError
      */
     public static postUser(
-requestBody?: User,
+requestBody?: AddUserDto,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',

@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../app/store';
 import { Box, CircularProgress, Divider, TextField, Button, MenuItem, FormControl, InputLabel, Select } from "@mui/material/";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect, useState } from 'react';
-import { getUserData, updateCurrentUser } from '../../redux/actions/userActions';
+import { getUserData, updateCurrentUser } from '../../redux/actions/currentUserActions';
 import { UpdateUserDto } from '../../services/openapi';
 
 export default function MyAccount() {

@@ -1,42 +1,44 @@
 import { User } from "../../services/openapi";
-
+// User
 export enum UserActionTypes {
-  SET_AUTHENTICATED = "SET_AUTHENTICATED",
-  SET_UNAUTHENTICATED = "SET_UNAUTHENTICATED",
-  SET_USER = "SET_USER",
-  LOADING_USER = "LOADING_USER",
+  ACTIVE_USER = "ACTIVE_USER",
+  LOADED_USERS = "LOADED_USERS",
+  LOADING_USERS = "LOADING_USERS",
+  SET_USERS = "SET_USERS",
+  NEW_USER = "NEW_USER",
 }
 
 export default interface UserState {
-  authenticated: boolean;
+  activeUser: User | null;
   loading: boolean;
-  currentUser: User | null;
+  users: Array<User> | null;
 }
 
-export interface userStateUnauthenticated {
-  type: UserActionTypes.SET_UNAUTHENTICATED;
-}
-
-export interface userStateAuthenticated {
-  type: UserActionTypes.SET_AUTHENTICATED;
+export interface userStateActiveUser {
+  type: UserActionTypes.ACTIVE_USER;
+  payload: User | null;
 }
 
 export interface userStateLoading {
-  type: UserActionTypes.LOADING_USER;
+  type: UserActionTypes.LOADING_USERS;
+}
+
+export interface userStateLoaded {
+  type: UserActionTypes.LOADED_USERS;
 }
 
 export interface userStateSet {
-  type: UserActionTypes.SET_USER;
-  payload: User;
+  type: UserActionTypes.SET_USERS;
+  payload: Array<User> | null;
+}
+
+export interface userStateNew {
+  type: UserActionTypes.NEW_USER;
 }
 
 export type UserStateActions =
-  | userStateUnauthenticated
-  | userStateAuthenticated
+  | userStateActiveUser
   | userStateLoading
-  | userStateSet;
-
-//UI reducer types
-export const SET_ERRORS = "SET_ERRORS";
-export const LOADING_UI = "LOADING_UI";
-export const CLEAR_ERRORS = "CLEAR_ERRORS";
+  | userStateLoaded
+  | userStateSet
+  | userStateNew;

@@ -2,13 +2,14 @@ import React from "react";
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleIcon from '@mui/icons-material/People';
+import PersonIcon from '@mui/icons-material/Person';
 import BedroomChildIcon from '@mui/icons-material/BedroomChild';
 import MedicationIcon from '@mui/icons-material/Medication';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotesIcon from '@mui/icons-material/Notes';
-import { logoutUser } from "../redux/actions/userActions";
+import { logoutUser } from "../redux/actions/currentUserActions";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -79,6 +80,20 @@ export default function DrawerContent() {
                             <ListItemText sx={{
                                 color: "#000"
                             }}>Medikamente</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    : ''
+                }
+                {user?.role === 1
+                    ?
+                    <ListItem component={Link} to="/user">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <PersonIcon />
+                            </ListItemIcon>
+                            <ListItemText sx={{
+                                color: "#000"
+                            }}>User</ListItemText>
                         </ListItemButton>
                     </ListItem>
                     : ''

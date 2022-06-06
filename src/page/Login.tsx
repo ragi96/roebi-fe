@@ -3,7 +3,7 @@ import { AuthenticateRequest } from '../services/openapi';
 import { TextField, Button, Box, Avatar, Typography } from "@mui/material/";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from "react-router-dom";
-import { loginUser } from '../redux/actions/userActions';
+import { loginUser } from '../redux/actions/currentUserActions';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { RootState } from '../app/store';
 
